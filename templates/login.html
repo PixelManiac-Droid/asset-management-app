@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block body_id %}login{% endblock %}
+
+{% block nav %}
+
+<div>
+
+<a href="{{ url_for('index') }}">Home</a>
+
+</div>
+{% endblock %}
+
+{% block content %}
+
+
+<form method="POST" action="" novalidate >
+    <h1>Login</h1>
+
+    <div>
+        {{ form.hidden_tag() }}
+        {{ form.email.label }}
+        {{ form.email() }}
+        {{ email_error }}
+    </div>
+
+    <div>
+        {{ form.password.label }}
+        {{ form.password() }}
+        {{ password_error }}
+    </div>
+        {{ form.submit() }}
+    
+    <p>if you don't have an account <a href="{{ url_for('sign_up') }}">sign up</a></p> 
+
+</form>
+
+
+
+{% endblock %}

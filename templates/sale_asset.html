@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+{% block body_id %}sale_asset{% endblock %}
+
+{% block nav %}
+
+<a href="{{ url_for('index') }}">Home</a>
+<a href="{{ url_for('dashboard') }}">Dashboard</a>
+<a href="{{ url_for('add_asset')}}">Add Asset</a>
+<a href="{{ url_for('logout') }}">Logout</a>
+<a href="{{ url_for('settings')}}">Settings</a>
+<a href="{{ url_for('logs')}}">Logs</a>
+<a href="{{ url_for('export')}}">Export</a>
+<a href="{{ url_for('insights')}}">Insights</a>
+<a href="{{ url_for('tutorial')}}">Tutorial</a>
+
+{% endblock %}
+
+{% block content %}
+
+
+
+<form method="POST" action="" novalidate>
+
+    <h1>Sale Asset</h1>
+
+    <p>This will delete the asset, and update the transactions table.</p>
+
+    <div>
+    {{form.hidden_tag()}}
+    {{form.price.label}}
+    {{form.price()}}
+    {% for error in form.price.errors %}
+        <p>{{ error }}</p>
+    {% endfor %}
+
+    </div>
+    <br/>
+
+    <div>
+    {{form.submit()}}
+    </div>
+    <br/>
+
+</form>
+
+{% endblock %} 

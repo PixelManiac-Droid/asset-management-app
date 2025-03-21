@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+
+{% block body_id %}logs{% endblock %}
+
+{% block nav %}
+
+<a href="{{ url_for('index') }}">Home</a>
+<a href="{{ url_for('dashboard') }}">Dashboard</a>
+<a href="{{ url_for('add_asset')}}">Add Asset</a>
+<a href="{{ url_for('logout') }}">Logout</a>
+<a href="{{ url_for('settings')}}">Settings</a>
+<a href="{{ url_for('export')}}">Export</a>
+<a href="{{ url_for('insights')}}">Insights</a>
+<a href="{{ url_for('tutorial')}}">Tutorial</a>
+
+{% endblock %}
+
+{% block content %}
+<h1>Logs</h1>
+<div>
+<div>
+    <table>
+        <h2>Transaction History</h2>
+        <tr>
+            <th>Name</th>
+            <th>Sale Price</th>
+            <th>Date</th>
+            <th>Profit/Loss</th>
+        </tr>
+        {% for transaction in transactions %}
+        <tr>
+            <td>{{ transaction.name }}</td>
+            <td>{{ transaction.price }}</td>
+            <td>{{ transaction.date }}</td>
+            <td>{{ transaction.profit_loss }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+<div>
+    <table>
+        <h2>Delta History</h2>
+        <tr>
+            <th>Name</th>
+            <th>Old Value</th>
+            <th>New Value</th>
+            <th>Delta</th>
+            <th>Date</th>
+            <th>Type</th>
+            <th>Date</th>
+        </tr>
+        {% for depreciation in appr_depr %}
+        <tr>
+            <td>{{ depreciation.name }}</td>
+            <td>{{ depreciation.old_value }}</td>
+            <td>{{ depreciation.new_value }}</td>
+            <td>{{ depreciation.delta }}</td>
+            <td>{{ depreciation.date }}</td>
+            <td>{{ depreciation.delta_type }}</td>
+            <td>{{ depreciation.date }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+</div>
+
+{% endblock %}

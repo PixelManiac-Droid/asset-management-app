@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block body_id %}index{% endblock %}
+
+{% block nav %}
+
+<a href="{{ url_for('login') }}">Login</a>
+<a href="{{ url_for('sign_up') }}">Sign Up</a>
+<a href="{{ url_for('dashboard')}}">Dashboard</a>
+
+{% endblock %}
+
+{% block content %}
+
+<h1>AssetTracker.</h1>
+
+<p>Take control of your assets with our easy-to-use platform, secure portfolio tracking, and powerful financial tools. Start managing your assets the right way today!</p>
+
+{% endblock %}

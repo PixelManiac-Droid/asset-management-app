@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block body_id %}settings{% endblock %}
+
+{% block nav %}
+
+<a href="{{ url_for('index') }}">Home</a>
+<a href="{{ url_for('dashboard') }}">Dashboard</a>
+<a href="{{ url_for('add_asset')}}">Add Asset</a>
+<a href="{{ url_for('logout') }}">Logout</a>
+<a href="{{ url_for('logs')}}">Logs</a>
+<a href="{{ url_for('export')}}">Export</a>
+<a href="{{ url_for('insights')}}">Insights</a>
+<a href="{{ url_for('tutorial')}}">Tutorial</a>
+
+{% endblock %}
+
+{% block content %}
+
+<form method="POST" action="" novalidate>
+    <h1>Settings</h1>
+
+    <div>
+        {{ form.hidden_tag() }}
+        {{ form.current_password.label }}
+        {{ form.current_password() }}
+        {% for error in form.current_password.errors %}
+            <p>{{ error }}</p>
+        {% endfor %}
+        <p>{{ current_password_error }}</p>
+        {{ form.new_password.label }}
+        {{ form.new_password() }}
+        {% for error in form.new_password.errors %}
+            <p>{{ error }}</p>
+        {% endfor %}
+        <p>{{ new_password_error }}</p>
+        <p>{{ success_message }}</p>
+        
+    </div>
+    {{ form.submit() }}
+    
+    {{ form.clear_data() }}
+    <p>Clearing data will factory reset your account.</p>
+</form>
+{% endblock %}

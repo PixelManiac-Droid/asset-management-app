@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block body_id %}insights{% endblock %}
+
+{% block nav %}
+
+<a href="{{ url_for('index') }}">Home</a>
+<a href="{{ url_for('dashboard') }}">Dashboard</a>
+<a href="{{ url_for('add_asset') }}">Add Asset</a>
+<a href="{{ url_for('logout') }}">Logout</a>
+<a href="{{ url_for('settings')}}">Settings</a>
+<a href="{{ url_for('logs')}}">Logs</a>
+<a href="{{ url_for('export')}}">Export</a>
+<a href="{{ url_for('tutorial')}}">Tutorial</a>
+
+{% endblock %}
+
+{% block content %}
+
+<h2>Assets worth disposing (<70%Purchase Price)</h2>
+<div>
+    
+    <table>
+        
+        <tr>
+            <th>Asset Name</th>
+            <th>Category</th>
+            <th>Purchase Price</th>
+            <th>Current Value</th>
+        </tr>
+        {% for asset in depr_advice %}
+        <tr>
+            <td>{{ asset.name }}</td>
+            <td>{{ asset.category }}</td>
+            <td>{{ asset.purchase_price }}</td>
+            <td>{{ asset.current_value }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+
+{% endblock %}

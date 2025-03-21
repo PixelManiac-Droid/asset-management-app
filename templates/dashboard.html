@@ -1,0 +1,200 @@
+{% extends 'base.html' %}
+
+{% block body_id %}dashboard{% endblock %}
+
+{% block nav %}
+
+    
+
+<div>
+<a href="{{ url_for('index') }}">Home</a>
+<a href="{{ url_for('add_asset') }}">Add Asset</a>
+<a href="{{ url_for('logout') }}">Logout</a>
+<a href="{{ url_for('settings')}}">Settings</a>
+<a href="{{ url_for('logs')}}">Logs</a>
+<a href="{{ url_for('export')}}">Export</a>
+<a href="{{ url_for('insights')}}">Insights</a>
+<a href="{{ url_for('tutorial')}}">Tutorial</a>
+
+</div>
+
+{% endblock %}
+
+{% block content %}
+<h1>Welcome to your dashboard, {{first_name}} {{last_name}}</h1>
+
+<div>
+
+<div id="assets">
+    <h2>Your Assets</h2>
+<table>
+    <tr>
+        <th>Asset Name</th>
+        <th>Quantity</th>
+        <th>Category</th>
+        <th>Purchase Date</th>
+        <th>Purchase Price</th>
+        <th>Current Value</th>
+        <th>Actions</th>
+    </tr>
+    {% for asset in details %}
+    <tr>
+        <td>{{ asset.name }}</td>
+        <td>{{ asset.quantity }}</td>
+        <td>{{ asset.category }}</td>
+        <td>{{ asset.purchase_date }}</td>
+        <td>{{ asset.purchase_price }}</td>
+        <td>{{ asset.current_value }}</td>
+        <td>    
+            <a href="{{ url_for('delete_asset', asset_id=asset['id']) }}" class="button-style">Sell</a> <a href="{{ url_for('edit_asset', asset_id=asset['id']) }}" class="button-style">Edit</a> <a href="{{ url_for('update_asset', asset_id=asset['id'])}}" class="button-style">Update</a>
+        </td>
+    </tr>
+
+    {% endfor %}
+</table>
+</div>
+
+<div>
+    
+<div class="category">
+    <h2>Real Estate</h2>
+    <table class="small_table">
+        <tr>
+            <th>Name</th>
+            <th>Current Value</th>
+        </tr>
+
+        {% for asset in real_estate %}
+            <tr>
+            <td>{{ asset.name }}</td>
+            <td>{{ asset.current_value }}</td>
+            </tr>
+        {% endfor %}
+
+    </table>
+</div>
+<div class="category">
+    <h2>Investments</h2>
+    <table class="small_table">
+        <tr>
+            <th>Name</th>
+            <th>Current Value</th>
+        </tr>
+
+        {% for asset in investments %}
+            <tr>
+            <td>{{ asset.name }}</td>
+            <td>{{ asset.current_value }}</td>
+            </tr>
+        {% endfor %}
+
+    </table>
+</div>
+<div class="category">
+    <h2>Personal Valuables</h2>
+    <table class="small_table">
+        <tr>
+            <th>Name</th>
+            <th>Current Value</th>
+        </tr>
+
+        {% for asset in personal_valuables %}
+            <tr>
+            <td>{{ asset.name }}</td>
+            <td>{{ asset.current_value }}</td>
+            </tr>
+        {% endfor %}
+
+    </table>
+</div>
+<div class="category">
+    <h2>Vehicles</h2>
+    <table class="small_table">
+        <tr>
+            <th>Name</th>
+            <th>Current Value</th>
+        </tr>
+
+        {% for asset in vehicles %}
+            <tr>
+            <td>{{ asset.name }}</td>
+            <td>{{ asset.current_value }}</td>
+            </tr>
+        {% endfor %}
+
+    </table>
+</div>
+
+<div class="total">
+    <h2>Total: €{{ real_estate_total }}</h2>
+</div>
+<div class="total">
+    <h2>Total: €{{ investments_total }}</h2>
+</div>
+<div class="total">
+    <h2>Total: €{{ personal_valuables_total }}</h2>
+</div>
+<div class="total">
+    <h2>Total: €{{ vehicles_total }}</h2>
+</div>
+
+</div>
+
+<div>
+    <div class="appr_depr">
+        <h2>Appreciation</h2>
+        <table>
+            <tr>
+                <th>Asset Name</th>
+                <th>Category</th>
+                <th>Purchase Price</th>
+                <th>Current Value</th>
+            </tr>
+            {% for asset in appreciation %}
+            <tr>
+                
+                <td>{{ asset.name }}</td>
+                <td>{{ asset.category }}</td>
+                <td>{{ asset.purchase_price }}</td>
+                <td>{{ asset.current_value }}</td>
+                              
+            </tr>
+            {% endfor %} 
+        </table>
+    </div>
+
+    <div class="appr_depr">
+        <h2>Depreciation</h2>
+        <table>
+            <tr>
+                <th>Asset Name</th>
+                <th>Category</th>
+                <th>Purchase Price</th>
+                <th>Current Value</th>
+            </tr>
+            {% for asset in depreciation %}
+            <tr>
+                
+                <td>{{ asset.name }}</td>
+                <td>{{ asset.category }}</td>
+                <td>{{ asset.purchase_price }}</td>
+                <td>{{ asset.current_value }}</td>
+                              
+            </tr>
+            {% endfor %} 
+        </table>
+    </div>
+
+</div>
+
+<div class="images">
+    
+    <img id='graph' src="{{ url_for('graph') }}" alt="Portfolio Chart">
+    
+    <img id='pie' src="{{ url_for('display_pie_chart') }}" alt="Portfolio Pie Chart">
+</div>
+
+
+</div>
+
+{% endblock %}

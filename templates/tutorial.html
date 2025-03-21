@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block body_id %}tutorial{% endblock %}
+
+{% block nav %}
+
+<a href="{{ url_for('index') }}">Home</a>
+<a href="{{ url_for('dashboard') }}">Dashboard</a>
+<a href="{{ url_for('add_asset') }}">Add Asset</a>
+<a href="{{ url_for('logout') }}">Logout</a>
+<a href="{{ url_for('settings')}}">Settings</a>
+<a href="{{ url_for('logs')}}">Logs</a>
+<a href="{{ url_for('export')}}">Export</a>
+<a href="{{ url_for('insights')}}">Insights</a>
+
+
+{% endblock %}
+
+{% block content %}
+
+<div>
+
+    <h2>Welcome to AssetTracker!</h2>
+    <p>You can add an asset by clicking the add asset button at the top right in the page.</p>
+    <p>You can view your assets by clicking the dashboard button at the top right in the page. The dashboard will also show you other details about your assets such as depreciation and appreciaiton, it also includes a pie chart to show your portfolio breakdown and a line graph to show the value of your portfolio over time.</p>
+    <p>In the dashboard on the first panel you can also sell, update, and edit assets. The difference between edit and update is that edit is only for error corrections whereas update is for when the asset's value actually changes.</p>
+    <p>The export button in the nav is for downloading all the tables as a csv file.</p>
+    <p>The Logs page shows you the history of all transactions and the depreciation history of your assets</p>
+    <p>In the settings page you can reset your password and also factory reset your account.</p>
+    <p>The insights page will give you reccomendations on when to sell your assets, based on depreciation history.</p>
+    <p>*The pie chart and the graph in the assets page may not appear the first time you open the dashboard, please reload the page.</p>
+
+</div>
+
+{% endblock %}

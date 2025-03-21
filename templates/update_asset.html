@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block body_id %}update_asset{% endblock %}
+
+{% block nav %}
+
+<a href="{{ url_for('index') }}">Home</a>
+<a href="{{ url_for('dashboard') }}">Dashboard</a>
+<a href="{{ url_for('add_asset')}}">Add Asset</a>
+<a href="{{ url_for('logout') }}">Logout</a>
+<a href="{{ url_for('settings')}}">Settings</a>
+<a href="{{ url_for('logs')}}">Logs</a>
+<a href="{{ url_for('export')}}">Export</a>
+<a href="{{ url_for('insights')}}">Insights</a>
+<a href="{{ url_for('tutorial')}}">Tutorial</a>
+
+{% endblock %}
+
+{% block content %}
+
+<form method="POST" action="" novalidate>
+    
+    <h1>Update Asset</h1>
+    <p>This will update the current value, and update it in the depreciation/appreciation table</p>
+    
+    {{form.hidden_tag()}}
+    {{form.price.label}}
+    {{form.price()}}
+    <br/>
+    {{form.submit()}}
+</form>
+
+{% endblock %}

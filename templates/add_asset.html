@@ -1,0 +1,85 @@
+{% extends 'base.html' %}
+
+{% block body_id %}add_asset{% endblock %}
+
+{% block nav %}
+
+<a href="{{ url_for('index') }}">Home</a>
+<a href="{{ url_for('dashboard') }}">Dashboard</a>
+<a href="{{ url_for('logout') }}">Logout</a>
+<a href="{{ url_for('settings')}}">Settings</a>
+<a href="{{ url_for('logs')}}">Logs</a>
+<a href="{{ url_for('export')}}">Export</a>
+<a href="{{ url_for('insights')}}">Insights</a>
+<a href="{{ url_for('tutorial')}}">Tutorial</a>
+
+{% endblock %}
+
+{% block content %}
+
+<form method="POST" action="" novalidate>
+
+<h1>Add Asset</h1>
+
+<div>
+
+{{ form.hidden_tag() }}
+{{ form.name.label }}
+{{ form.name() }}
+{% for error in form.name.errors %}
+    <p>{{ error }}</p>
+{% endfor %}
+
+
+{{ form.quantity.label }}
+{{ form.quantity() }}
+{% for error in form.quantity.errors %}
+    <p>{{ error }}</p>
+{% endfor %}
+
+</div>
+
+<br/>
+
+<div>
+
+{{ form.category.label }}
+{{ form.category() }}
+{% for error in form.category.errors %}
+    <p>{{ error }}</p>
+{% endfor %}
+
+{{ form.purchase_date.label }}
+{{ form.purchase_date() }}
+{% for error in form.purchase_date.errors %}
+    <p>{{ error }}</p>
+{% endfor %}
+{{date_error}}
+
+</div>
+
+<br/>
+
+<div>
+
+{{ form.purchase_price.label }}
+{{ form.purchase_price() }}
+{% for error in form.purchase_price.errors %}
+    <p>{{ error }}</p>
+{% endfor %}
+
+{{ form.current_value.label }}
+{{ form.current_value() }}
+{% for error in form.current_value.errors %}
+    <p>{{ error }}</p>
+{% endfor %}
+
+</div>
+
+<br/>
+
+{{ form.submit() }}
+
+</form>
+
+{% endblock %}
